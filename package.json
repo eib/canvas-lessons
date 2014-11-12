@@ -1,0 +1,34 @@
+{
+  "name": "Canvas",
+  "version": "1.0.0",
+  "description": "Canvas Lessons",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/n/a"
+  },
+  "keywords": [
+    "Canvas",
+    "HTML5",
+    "Graphics"
+  ],
+  "author": "Ethan Blackwelder",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/n/a/issues"
+  },
+  "homepage": "https://github.com/n/a",
+  "devDependencies": {
+    "bower": "^1.3.12",
+    "browser-sync": "^1.6.5",
+    "browserify": "^6.2.0",
+    "glob": "^4.0.6",
+    "gulp": "^3.8.10",
+    "gulp-notify": "^2.0.1",
+    "gulp-util": "^3.0.1",
+    "remapify": "^1.3.0"
+  }
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+var canvasEl,
+    timerId,
+    fps = 30,
+    millisPerFrame = 1000 / fps,
+    animationDurationMillis = 6000,
+    startMillis,
+    RADIANS_PER_DEGREES = Math.PI / 180;
+
+function documentReady() {
+    canvasEl = document.getElementById('canvasEl');
+    start();
+}
+function start() {
+    startMillis = Date.now();
+    step();
+    timerId = window.setInterval(step, millisPerFrame);
+}
+function step() {
+    var millisElapsed = Date.now() - startMillis,
+        ctx = canvasEl.getContext('2d');
+    animate(ctx, millisElapsed);
+    if (millisElapsed >= animationDurationMillis) {
+        end();
+    }
+}
+function end() {
+    if (timerId) {
+        window.clearInterval(timerId);
+        timerId = null;
+    }
+    console.log('stopped');
+}
+
+/*
+Radians == revs  * 2PI rads * 1 minute   * 1 sec
+--         --      --         --           --
+ms         minute  rev        60 seconds   1000 ms
+ */
+
+function animate(ctx, millisElapsed) {
+    var canvasWidth = canvasEl.width,
+        canvasHeight = canvasEl.height,
+        spinnerRadius = 50,
+        strokeWidth = 8,
+        rpms = 30,
+        radiansPerMs = rpms * (2*Math.PI) / 60 / 1000,
+        radiansElapsed = radiansPerMs * millisElapsed,
+        barWidth = canvasWidth / 8,
+        pxPerS = 400,
+        pxElapsed = pxPerS / 1000 * millisElapsed,
+        barX = (pxElapsed) % canvasWidth;
+
+    ctx.save();
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = 'white';
+    ctx.lineWidth = strokeWidth;
+    ctx.lineCap = 'round';
+
+    ctx.beginPath();
+    ctx.moveTo(barX, 30);
+    ctx.lineTo(barX + barWidth, 30);
+    ctx.stroke();
+
+    ctx.save();
+    ctx.translate(-canvasWidth, 0);
+    ctx.beginPath();
+    ctx.moveTo(barX, 30);
+    ctx.lineTo(barX + barWidth, 30);
+    ctx.stroke();
+    ctx.restore();
+
+    ctx.save();
+    ctx.lineCap = 'round';
+    ctx.translate(canvasWidth / 2, canvasHeight / 2);
+    ctx.rotate(radiansElapsed);
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(spinnerRadius, 0);
+    ctx.stroke();
+    ctx.restore();
+
+    ctx.restore();
+}
+</script>
+</head>
+<body onload="documentReady()">
+<canvas id="canvasEl" width="500" height="300"></canvas>
+</body>
+</html>

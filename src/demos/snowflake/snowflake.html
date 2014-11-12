@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+	background-color: #000;
+}
+#canvasEl {
+	text-align: center;
+	margin: auto;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+}
+</style>
+<script>
+var canvasEl,
+    timerId,
+    fps = 60,
+    millisPerFrame = 1000 / fps,
+    animationDurationMillis = 6000,
+    startMillis,
+    RADIANS_PER_DEGREES = Math.PI / 180,
+    image = new Image();
+
+function documentReady() {
+    canvasEl = document.getElementById('canvasEl');
+    canvasEl.style.marginLeft = '-' + (canvasEl.width/2) + 'px';
+    canvasEl.style.marginTop = '-' + (canvasEl.height/2) + 'px';
+    image.src = './snowflake.png';
+    start();
+}
+function start() {
+    startMillis = Date.now();
+    step();
+    timerId = window.setInterval(step, millisPerFrame);
+}
+function step() {
+    var millisElapsed = Date.now() - startMillis,
+        ctx = canvasEl.getContext('2d');
+    animate(ctx, millisElapsed);
+//    if (millisElapsed >= animationDurationMillis) {
+//        end();
+//    }
+}
+function end() {
+    if (timerId) {
+        window.clearInterval(timerId);
+        timerId = null;
+    }
+    console.log('stopped');
+}
+function animate(ctx, millisElapsed) {
+    ctx.save();
+
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
+    ctx.translate(canvasEl.width/2, canvasEl.height/2);
+
+    drawSnowflake(ctx, millisElapsed);
+
+    ctx.restore();
+}
+function drawSnowflake(ctx, millisElapsed) {
+    var rpms = 10,
+        radiansPerMs = rpms * (2*Math.PI) / 60 / 1000,
+        radiansElapsed = radiansPerMs * millisElapsed;
+
+    ctx.scale(0.1, 0.1);
+    ctx.rotate(-radiansElapsed);
+    ctx.drawImage(image, -image.width/2, -image.height/2, image.width, image.height);
+}
+</script>
+</head>
+<body onload="documentReady()">
+<canvas id="canvasEl" width="1000" height="600"></canvas>
+</body>
+</html>
