@@ -1,7 +1,7 @@
 var Snowflake = require('./Snowflake'),
-    sortByKey = require('../lib/sortByKey');
+    sortByKey = require('../../lib/sortByKey');
 
-var countRange = [5, 12],
+var countRange = [6, 12],
     scaleRange = [0.1, 1],
     degreesRange = [0, 360],
     rpmRange = [2, 8],
