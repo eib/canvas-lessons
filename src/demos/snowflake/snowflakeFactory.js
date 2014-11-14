@@ -2,11 +2,24 @@ var Snowflake = require('./Snowflake'),
     sortByKey = require('../lib/sortByKey');
 
 var countRange = [5, 12],
-    scaleRange = [0.01, 0.3],
+    scaleRange = [0.1, 1],
     degreesRange = [0, 360],
     rpmRange = [2, 8],
-    positionXRange = [-600, 600], //TODO: look at the window/canvas bounds? (Or transform the canvas)
+    positionXRange = [-600, 600],
     positionYRange = [-300, 300];
+
+function updateDimensions() {
+    var width = window.innerWidth,
+        height = window.innerHeight,
+        area = width * height;
+    positionXRange = [-width, width];
+    positionYRange = [-height, height];
+    countRange = [8, 15];
+}
+
+window.addEventListener('resize', updateDimensions, false);
+window.addEventListener('orientationchange', updateDimensions, false);
+updateDimensions();
 
 function randomValueWithinRange(range) {
     var min = range[0],

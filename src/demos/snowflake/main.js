@@ -1,10 +1,11 @@
 var Animator = require('../lib/Animator'),
     snowflakeFactory = require('./snowflakeFactory'),
-    snowflakes = snowflakeFactory();
+    snowflakes = [];
 
 function documentReady() {
     var canvasEl = document.getElementById('canvasEl'),
         animator = new Animator(canvasEl, animate);
+    resetSnowflakes();
     animator.start();
 }
 
@@ -21,5 +22,11 @@ function animate(ctx, millisElapsed) {
 
     ctx.restore();
 }
+
+function resetSnowflakes() {
+    snowflakes = snowflakeFactory();
+}
+
+window.setInterval(resetSnowflakes, 5000);
 
 documentReady();
