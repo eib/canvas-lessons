@@ -23,6 +23,7 @@ Animator.prototype.start = function () {
     this.startMillis = Date.now();
     this.step();
     this.timerId = window.setInterval(this.step.bind(this), this.millisPerFrame);
+    return this;
 };
 
 Animator.prototype.step = function () {

@@ -2,11 +2,8 @@ function Animator(canvasEl, animateFn) {
     this.canvasEl = canvasEl;
     this.animate = animateFn;
 
-    this.beforeAnimate = [];
-    this.afterAnimate = [];
-
-    this.timerId = null;
-    this.startMillis = -1;
+    this.startTime = null;
+    this.isEnded = false;
 
     Object.defineProperty(this, 'millisPerFrame', {
         get: function() {
@@ -16,36 +13,27 @@ function Animator(canvasEl, animateFn) {
     });
 }
 
-Animator.prototype.fps = 30;
+Animator.prototype.fps = 60;
 
 Animator.prototype.start = function () {
     console.log('Starting animator...');
-    this.startMillis = Date.now();
     this.step();
-    this.timerId = window.setInterval(this.step.bind(this), this.millisPerFrame);
 };
 
-Animator.prototype.step = function () {
-    var millisElapsed = Date.now() - this.startMillis,
+Animator.prototype.step = function (timestamp) {
+    if (!this.startTime) {
+        this.startTime = timestamp;
+    }
+    var millisElapsed = timestamp - this.startTime,
         ctx = this.canvasEl.getContext('2d');
 
-    fireCallbacks(this, this.beforeAnimate);
     this.animate(ctx, millisElapsed);
-    fireCallbacks(this, this.afterAnimate);
+    window.requestAnimationFrame(this.step.bind(this));
 };
 
 Animator.prototype.end = function () {
-    if (this.timerId) {
-        window.clearInterval(this.timerId);
-        this.timerId = null;
-    }
+    this.isEnded = true;
     console.log('Stopped animator.');
 };
-
-function fireCallbacks(animator, callbacks) {
-    callbacks.forEach(function (callback) {
-        callback(animator);
-    });
-}
 
 module.exports = Animator;
