@@ -1,9 +1,9 @@
 all: build
 
 build:
-	browserify src/demos/static/main.js --outfile src/demos/static/bundle.js --debug
+	./bin/bundle.sh
 
 watch:
-	watchify src/demos/static/main.js --outfile src/demos/static/bundle.js --debug
+	WATCH=1 ./bin/bundle.sh
 
 .PHONY: all build watch
