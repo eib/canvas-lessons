@@ -14,7 +14,7 @@ function Animator(canvasEl, animateFn) {
     });
 }
 
-Animator.prototype.fps = 60;
+Animator.prototype.fps = 30;
 
 Animator.prototype.start = function () {
     console.log('Starting animator...');

@@ -1,9 +1,14 @@
 function Screen(width, height) {
     this.width = width;
     this.height = height;
+    this.particleOutset = this.defaults.particleOutset;
+    this.backgroundColor = this.defaults.backgroundColor;
 }
 
-Screen.prototype.backgroundColor = '#000000';
+Screen.prototype.defaults = {
+    particleOutset: 5,
+    backgroundColor: '#000000',
+};
 
 Screen.prototype.clear = function (ctx) {
     ctx.fillStyle = this.backgroundColor;
@@ -11,9 +16,9 @@ Screen.prototype.clear = function (ctx) {
 };
 
 Screen.prototype.containsParticle = function (particle) {
-    return -5 <= particle.x &&
-            particle.x <= this.width + 5 &&
-            particle.y <= this.height;
+    return (-this.particleOutset * 2 <= particle.x) &&
+            (particle.x <= this.width + this.particleOutset * 2) &&
+            (particle.y <= this.height);
 };
 
 module.exports = Screen;

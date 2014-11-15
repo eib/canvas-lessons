@@ -1,7 +1,7 @@
 function Particle(screen, numParticles) {
     this.x = Math.random() * screen.width;
     this.y = Math.random() * screen.height;
-    this.radius = Math.random() * 4 + 1;
+    this.radius = Math.random() * 3 + 1;
     this.density = Math.random() * numParticles;
 }
 

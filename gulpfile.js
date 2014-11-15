@@ -9,8 +9,8 @@ gulp.task('smoosh', function () {
 });
 
 gulp.task('images', function () {
-  gulp.src('src/demos/snowflake/snowflake.png')
+/*  gulp.src('src/demos/snowflake/snowflake.png')
     .pipe(gulp.dest('dist'));
-});
+*/});
 
 gulp.task('default', ['smoosh', 'images']);

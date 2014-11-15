@@ -1,12 +1,17 @@
 var RADIANS_PER_DEGREES = Math.PI / 360;
 
 function Snowflake(scale, startDegrees, rpms, position) {
-    this.scale = scale || 0.1;
+    this.scale = scale || this.defaults.scale;
     this.startRadians = startDegrees && (startDegrees * RADIANS_PER_DEGREES) || 0;
-    this.rpms = rpms || -5;
-    this.position = position || [0, 0];
+    this.rpms = rpms || this.defaults.rpms;
+    this.position = position || this.defaults.position;
 }
 
+Snowflake.prototype.defaults = {
+    scale: 0.1,
+    rpms: -5,
+    position: [0, 0],
+};
 Snowflake.prototype.image = new Image();
 Snowflake.prototype.image.src = './snowflake.png';
 

@@ -1,5 +1,7 @@
-var Animator = require('../lib/Animator'),
-    snowflakeFactory = require('./lib/snowflakeFactory'),
+var config = require('./lib/config'),
+    autoResize = require('./lib/autoResize'),
+    Animator = require('../lib/Animator'),
+    SnowflakeFactory = require('./lib/snowflakeFactory'),
     Screen = require('./lib/Screen'),
     ParticleGroup = require('./lib/ParticleGroup'),
     screen,
@@ -33,19 +35,19 @@ function drawSnowflakes(ctx, millisElapsed) {
 
 function resetScreen() {
     screen = new Screen(window.innerWidth, window.innerHeight);
-    screen.backgroundColor = '#002233';
 }
 
 function resetParticles() {
-    particles = new ParticleGroup(25, screen);
+    particles = new ParticleGroup(screen);
 }
 
 function resetSnowflakes() {
-    snowflakes = snowflakeFactory();
+    snowflakes = new SnowflakeFactory().createSnowflakes();
 }
 
 window.setInterval(resetSnowflakes, 15000);
 window.addEventListener('resize', resetScreen, false);
 window.addEventListener('orientationchange', resetScreen, false);
 
+autoResize();
 documentReady();

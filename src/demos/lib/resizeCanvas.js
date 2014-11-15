@@ -1,3 +1,5 @@
+var module = module || {};
+
 function resizeCanvas(container, canvas) {
     var newWidth = window.innerWidth;
     var newHeight = window.innerHeight;
@@ -10,3 +12,5 @@ function resizeCanvas(container, canvas) {
     canvas.width = newWidth;
     canvas.height = newHeight;
 }
+
+module.exports = resizeCanvas;

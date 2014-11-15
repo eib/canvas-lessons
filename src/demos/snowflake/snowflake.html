@@ -23,23 +23,6 @@ body {
     <canvas id="canvasEl"></canvas>
 </div>
 <!-- smoosh -->
-<script src="../lib/resizeCanvas.js"></script>
-<script>
-var widthToHeight = 4 / 2,
-    container = document.getElementById('canvasContainer'),
-    canvas = document.getElementById('canvasEl');
-
-function autoResizeCanvas() {
-    window.requestAnimationFrame(function () {
-        resizeCanvas(container, canvas, widthToHeight);
-    });
-}
-
-autoResizeCanvas();
-
-window.addEventListener('resize', autoResizeCanvas, false);
-window.addEventListener('orientationchange', autoResizeCanvas, false);
-</script>
 <script src="./bundle.js"></script>
 <!-- endsmoosh -->
 </body>
