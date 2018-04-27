@@ -2,39 +2,14 @@
 var canvasDimensions,
     Graph = require('../lib/graph'),
     Animator = require('../lib/Animator'),
-    parser = require('math-parser'),
-    Scope = require('math-parser/lib/scope'),
     canvasEl,
-    graph,
-    graphingFunction,
-    functionString,
-    durationMs = 15 * 1000,
     animator;
 
 function documentReady() {
-    var form = document.getElementById('function_form');
-
     canvasEl = document.getElementById('canvas');
     canvasDimensions = {
         width: canvasEl.width,
         height: canvasEl.height,
-    };
-    graph = new Graph(canvasEl.width, canvasEl.height, 10);
-    form.addEventListener('submit', function (evt) {
-        evt.preventDefault();
-        restart();
-        return false;
-    }, true);
-}
-
-function restart() {
-    var functionText = document.getElementById('function').value,
-        expression = parser.parse(functionText);
-    functionString = 'f(x) = ' + expression;
-    graphingFunction = function (x) {
-        var scope = new Scope();
-        scope.define('x', x);
-        return scope.resolve(expression);
     };
     animator = new Animator(canvasEl, animate);
     animator.start();

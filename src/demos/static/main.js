@@ -9,7 +9,7 @@ var Grid = require('../lib/Grid'),
 function documentReady() {
     var canvasEl = document.getElementById('canvas');
 
-    grid = new Grid(canvasEl.width, canvasEl.height, 8, 8);
+    grid = new Grid(canvasEl.width, canvasEl.height, 7, 7);
     selectionStrategy = new SingleSelectStrategy(grid);
     selectionStrategy.highlightColor = 'red';
     new GridListener(grid, selectionStrategy).attach(canvasEl);

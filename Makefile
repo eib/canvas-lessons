@@ -2,10 +2,10 @@ all: build
 
 build:
 	#./bin/bundle.sh
-	browserify src/demos/snowflake/main.js -t brfs --outfile src/demos/snowflake/bundle.js
+	browserify src/demos/graph/main.js -t brfs --outfile src/demos/graph/bundle.js
 
 watch:
 	#WATCH=1 ./bin/bundle.sh
-	watchify src/demos/snowflake/main.js -t brfs --outfile src/demos/snowflake/bundle.js
+	watchify src/demos/graph/main.js -t brfs --outfile src/demos/graph/bundle.js
 
 .PHONY: all build watch
