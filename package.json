@@ -1,5 +1,5 @@
 {
-  "name": "Canvas",
+  "name": "canvas-lessons",
   "version": "1.0.0",
   "description": "Canvas Lessons",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/n/a"
+    "url": "https://github.com/eib/canvas-lessons.git"
   },
   "keywords": [
     "Canvas",
@@ -16,23 +16,15 @@
     "Graphics"
   ],
   "author": "Ethan Blackwelder",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/n/a/issues"
+    "url": "https://github.com/eib/canvas-lessons/issues"
   },
-  "homepage": "https://github.com/n/a",
+  "homepage": "https://github.com/eib/canvas-lessons",
   "devDependencies": {
-    "bower": "^1.3.12",
-    "brfs": "^1.2.0",
-    "browser-sync": "^1.6.5",
-    "browserify": "^6.2.0",
-    "glob": "^4.0.6",
-    "gulp": "^3.8.10",
-    "gulp-notify": "^2.0.1",
-    "gulp-smoosher": "0.0.7",
-    "gulp-util": "^3.0.1",
+    "file-loader": "^6.0.0",
     "math-parser": "git://github.com/eib/math-parser",
-    "remapify": "^1.3.0",
-    "watchify": "^2.1.1"
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
   }
 }

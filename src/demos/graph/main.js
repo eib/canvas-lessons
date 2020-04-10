@@ -1,4 +1,3 @@
-
 var canvasDimensions,
     Graph = require('../lib/graph'),
     Animator = require('../lib/Animator'),

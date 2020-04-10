@@ -1,9 +1,9 @@
-var fs = require('fs');
 var Animator = require('../../lib/Animator'),
     Screen = require('./Screen'),
     Snowflake = require('./Snowflake'),
     SnowflakeFactory = require('./snowflakeFactory'),
-    ParticleGroup = require('./ParticleGroup');
+    ParticleGroup = require('./ParticleGroup'),
+    imageSrc = require('../snowflake.png');
 
 function updateDimensions(width, height) {
     SnowflakeFactory.prototype.positionRange = {
@@ -14,7 +14,7 @@ function updateDimensions(width, height) {
 //window.addEventListener('resize', updateDimensions, false);
 //window.addEventListener('orientationchange', updateDimensions, false);
 //updateDimensions();
-Snowflake.prototype.image.src = 'data:image/png;base64,' + fs.readFileSync(__dirname + '/../snowflake.png', 'base64');
+Snowflake.prototype.image.src = imageSrc;
 Screen.prototype.backgroundColor = '#000000';
 Animator.prototype.fps = 60;
 

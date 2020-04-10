@@ -1,11 +1,12 @@
+NODE=node
+WEBPACK_CLI=./node_modules/webpack-cli/bin/cli.js
+
 all: build
 
 build:
-	#./bin/bundle.sh
-	browserify src/demos/graph/main.js -t brfs --outfile src/demos/graph/bundle.js
+	$(NODE) $(WEBPACK_CLI)
 
 watch:
-	#WATCH=1 ./bin/bundle.sh
-	watchify src/demos/graph/main.js -t brfs --outfile src/demos/graph/bundle.js
+	WATCH=true $(NODE) $(WEBPACK_CLI)
 
 .PHONY: all build watch
